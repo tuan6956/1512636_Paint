@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+  <Application.Commands>
+    
+    <Command Name="cmdButtonNew"
+
+             Symbol="ID_CMD_NEW"
+
+             LabelTitle="New"
+
+             LabelDescription="New Description"
+
+             TooltipTitle="New (Ctrl+N)"
+
+             TooltipDescription="Create a new image.">
+      <Command.LargeImages>
+        <Image>Images/New_32px.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    
+    <Command Name="cmdButtonOpen"
+
+             Symbol="ID_CMD_OPEN"
+
+             LabelTitle="Open"
+
+             LabelDescription="Open Description"
+
+             TooltipTitle="Open (Ctrl+O)"
+
+             TooltipDescription="Open an existing image.">
+      <Command.LargeImages>
+        <Image>Images/New_32px.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonSave"
+
+             Symbol="ID_CMD_SAVE"
+
+             LabelTitle="Save"
+
+             LabelDescription="Save Description"
+
+             TooltipTitle="Save (Ctrl+S)"
+
+             TooltipDescription="Save the current image.">
+      <Command.LargeImages>
+        <Image>Images/New_32px.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonExit"
+
+             Symbol="ID_CMD_EXIT"
+
+             LabelTitle="Exit"
+
+             LabelDescription="Exit Description"
+
+             TooltipTitle="Exit (Ctrl+X)"
+
+             TooltipDescription="Exit application.">
+      <Command.LargeImages>
+        <Image>Images/check4.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonMoreA"
+
+             Symbol="ID_CMD_MORE_A"
+
+             LabelTitle="More A"
+
+             LabelDescription="Sub button A">
+      <Command.LargeImages>
+        <Image>Images/New_32px.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonMoreB"
+
+             Symbol="ID_CMD_MORE_B"
+
+             LabelTitle="More B"
+
+             LabelDescription="Sub button B">
+      <Command.LargeImages>
+        <Image>Images/New_32px.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonMoreC"
+
+             Symbol="ID_CMD_MORE_C"
+
+             LabelTitle="More C"
+
+             LabelDescription="Sub button C">
+      <Command.LargeImages>
+        <Image>Images/New_32px.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdTabMain"
+
+             Symbol="ID_CMD_TAB_MAIN"
+
+             LabelTitle="Main">
+    </Command>
+
+    <Command Name="cmdTabMore"
+
+             Symbol="ID_CMD_TAB_MORE"
+
+             LabelTitle="More">
+    </Command>
+
+    <Command Name="cmdGroupFileActions"
+
+             Symbol="ID_CMD_GROUP_FILE"
+
+             LabelTitle="File Actions">
+    </Command>
+
+    <Command Name="cmdGroupExit"
+
+             Symbol="ID_CMD_GROUP_EXIT"
+
+             LabelTitle="">
+    </Command>
+
+    <Command Name="cmdGroupMore"
+
+             Symbol="ID_CMD_MORE"
+
+             LabelTitle="">
+    </Command>
+  </Application.Commands>
+
+  <Application.Views>
+    <Ribbon>
+      <Ribbon.Tabs>
+        
+        <Tab CommandName="cmdTabMain">
+          
+          <Group CommandName="cmdGroupFileActions" SizeDefinition="ThreeButtons">
+            <ToggleButton CommandName="cmdToggleButton" />
+            <Button CommandName="cmdButtonNew" />
+            <Button CommandName="cmdButtonOpen" />
+            <Button CommandName="cmdButtonSave" />
+          </Group>
+        
+          <Group CommandName="cmdGroupExit" SizeDefinition="OneButton">
+            <Button CommandName="cmdButtonExit" />
+          </Group>
+          
+        </Tab>
+        
+        <Tab CommandName ="cmdTabMore">
+          <Group CommandName="cmdGroupMore" SizeDefinition="ThreeButtons">
+            <Button CommandName="cmdButtonMoreA" />
+            <Button CommandName="cmdButtonMoreB" />
+            <Button CommandName="cmdButtonMoreC" />
+          </Group>
+        </Tab>
+        
+      </Ribbon.Tabs>
+    </Ribbon>
+  </Application.Views>
+</Application>

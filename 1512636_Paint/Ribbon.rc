@@ -1,0 +1,155 @@
+// ******************************************************************************
+// * This is an automatically generated file containing the ribbon resource for *
+// * your application.                                                          *
+// ******************************************************************************
+
+#include ".\RibbonIDs.h"
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_NEW_LabelTitle_RESID L"New" /* LabelTitle ID_CMD_NEW_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_NEW_LabelDescription_RESID L"New Description" /* LabelDescription ID_CMD_NEW_LabelDescription_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_NEW_TooltipTitle_RESID L"New (Ctrl+N)" /* TooltipTitle ID_CMD_NEW_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_NEW_TooltipDescription_RESID L"Create a new image." /* TooltipDescription ID_CMD_NEW_TooltipDescription_RESID: (null) */
+END
+
+ID_CMD_NEW_LargeImages_RESID    BITMAP    "Images\\New_32px.bmp" /* LargeImages ID_CMD_NEW_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_OPEN_LabelTitle_RESID L"Open" /* LabelTitle ID_CMD_OPEN_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_OPEN_LabelDescription_RESID L"Open Description" /* LabelDescription ID_CMD_OPEN_LabelDescription_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_OPEN_TooltipTitle_RESID L"Open (Ctrl+O)" /* TooltipTitle ID_CMD_OPEN_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_OPEN_TooltipDescription_RESID L"Open an existing image." /* TooltipDescription ID_CMD_OPEN_TooltipDescription_RESID: (null) */
+END
+
+ID_CMD_OPEN_LargeImages_RESID    BITMAP    "Images\\New_32px.bmp" /* LargeImages ID_CMD_OPEN_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_SAVE_LabelTitle_RESID L"Save" /* LabelTitle ID_CMD_SAVE_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_SAVE_LabelDescription_RESID L"Save Description" /* LabelDescription ID_CMD_SAVE_LabelDescription_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_SAVE_TooltipTitle_RESID L"Save (Ctrl+S)" /* TooltipTitle ID_CMD_SAVE_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_SAVE_TooltipDescription_RESID L"Save the current image." /* TooltipDescription ID_CMD_SAVE_TooltipDescription_RESID: (null) */
+END
+
+ID_CMD_SAVE_LargeImages_RESID    BITMAP    "Images\\New_32px.bmp" /* LargeImages ID_CMD_SAVE_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_EXIT_LabelTitle_RESID L"Exit" /* LabelTitle ID_CMD_EXIT_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_EXIT_LabelDescription_RESID L"Exit Description" /* LabelDescription ID_CMD_EXIT_LabelDescription_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_EXIT_TooltipTitle_RESID L"Exit (Ctrl+X)" /* TooltipTitle ID_CMD_EXIT_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_EXIT_TooltipDescription_RESID L"Exit application." /* TooltipDescription ID_CMD_EXIT_TooltipDescription_RESID: (null) */
+END
+
+ID_CMD_EXIT_LargeImages_RESID    BITMAP    "Images\\check4.bmp" /* LargeImages ID_CMD_EXIT_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_MORE_A_LabelTitle_RESID L"More A" /* LabelTitle ID_CMD_MORE_A_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_MORE_A_LabelDescription_RESID L"Sub button A" /* LabelDescription ID_CMD_MORE_A_LabelDescription_RESID: (null) */
+END
+
+ID_CMD_MORE_A_LargeImages_RESID    BITMAP    "Images\\New_32px.bmp" /* LargeImages ID_CMD_MORE_A_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_MORE_B_LabelTitle_RESID L"More B" /* LabelTitle ID_CMD_MORE_B_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_MORE_B_LabelDescription_RESID L"Sub button B" /* LabelDescription ID_CMD_MORE_B_LabelDescription_RESID: (null) */
+END
+
+ID_CMD_MORE_B_LargeImages_RESID    BITMAP    "Images\\New_32px.bmp" /* LargeImages ID_CMD_MORE_B_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_MORE_C_LabelTitle_RESID L"More C" /* LabelTitle ID_CMD_MORE_C_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_MORE_C_LabelDescription_RESID L"Sub button C" /* LabelDescription ID_CMD_MORE_C_LabelDescription_RESID: (null) */
+END
+
+ID_CMD_MORE_C_LargeImages_RESID    BITMAP    "Images\\New_32px.bmp" /* LargeImages ID_CMD_MORE_C_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_TAB_MAIN_LabelTitle_RESID L"Main" /* LabelTitle ID_CMD_TAB_MAIN_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_TAB_MORE_LabelTitle_RESID L"More" /* LabelTitle ID_CMD_TAB_MORE_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_GROUP_FILE_LabelTitle_RESID L"File Actions" /* LabelTitle ID_CMD_GROUP_FILE_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_GROUP_EXIT_LabelTitle_RESID L"" /* LabelTitle ID_CMD_GROUP_EXIT_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_MORE_LabelTitle_RESID L"" /* LabelTitle ID_CMD_MORE_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    InternalCmd2_LabelTitle_RESID L"Label:InternalCmd2" /* LabelTitle InternalCmd2_LabelTitle_RESID: (null) */
+END
+
+APPLICATION_RIBBON    UIFILE    "Ribbon.bml"
