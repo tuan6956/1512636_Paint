@@ -12,6 +12,8 @@ public:
 	void Draw(HDC hdc, POINT pS, POINT pE);
 	CShape* Clone() const;
 	void SaveObject(std::fstream &out);
+	void ReadObject(std::fstream &in);
+	void clearObject();
 	void setPointStart(POINT pS);
 	void setPointEnd(POINT pE);
 	CLine();

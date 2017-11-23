@@ -14,39 +14,69 @@
 
              TooltipDescription="Create a new image.">
       <Command.LargeImages>
-        <Image>Images/New_32px.bmp</Image>
+        <Image>Images/New.bmp</Image>
       </Command.LargeImages>
     </Command>
     
-    <Command Name="cmdButtonOpen"
+    <Command Name="cmdButtonOpenBinary"
 
-             Symbol="ID_CMD_OPEN"
+             Symbol="ID_CMD_OPEN_BINARY"
 
-             LabelTitle="Open"
+             LabelTitle="Open binary file"
 
-             LabelDescription="Open Description"
+             LabelDescription="Open binary file"
 
              TooltipTitle="Open (Ctrl+O)"
 
              TooltipDescription="Open an existing image.">
       <Command.LargeImages>
-        <Image>Images/New_32px.bmp</Image>
+        <Image>Images/Open.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonOpenBitmap"
+
+             Symbol="ID_CMD_OPEN_BITMAP"
+
+             LabelTitle="Open bitmap file"
+
+             LabelDescription="Open bitmap file"
+
+             TooltipTitle="Open (Ctrl+O)"
+
+             TooltipDescription="Open an existing image.">
+      <Command.LargeImages>
+        <Image>Images/Open.bmp</Image>
       </Command.LargeImages>
     </Command>
 
-    <Command Name="cmdButtonSave"
+    <Command Name="cmdButtonSaveBinary"
 
-             Symbol="ID_CMD_SAVE"
+             Symbol="ID_CMD_SAVE_BINARY"
 
-             LabelTitle="Save"
+             LabelTitle="Save binary file"
 
-             LabelDescription="Save Description"
+             LabelDescription="Save binary file"
 
              TooltipTitle="Save (Ctrl+S)"
 
              TooltipDescription="Save the current image.">
       <Command.LargeImages>
-        <Image>Images/New_32px.bmp</Image>
+        <Image>Images/Save.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonSaveBitmap"
+
+             Symbol="ID_CMD_SAVE_BITMAP"
+
+             LabelTitle="Save bitmap file"
+
+             LabelDescription="Save bitmap file"
+
+             TooltipTitle="Save (Ctrl+S)"
+
+             TooltipDescription="Save the current image.">
+      <Command.LargeImages>
+        <Image>Images/Save.bmp</Image>
       </Command.LargeImages>
     </Command>
 
@@ -62,43 +92,54 @@
 
              TooltipDescription="Exit application.">
       <Command.LargeImages>
-        <Image>Images/check4.bmp</Image>
+        <Image>Images/Close.bmp</Image>
       </Command.LargeImages>
     </Command>
 
-    <Command Name="cmdButtonMoreA"
+    <Command Name="cmdButtonDrawLine"
 
-             Symbol="ID_CMD_MORE_A"
+             Symbol="ID_CMD_DRAW_LINE"
 
-             LabelTitle="More A"
+             LabelTitle="Line"
 
-             LabelDescription="Sub button A">
+             LabelDescription="Draw line shape">
       <Command.LargeImages>
-        <Image>Images/New_32px.bmp</Image>
+        <Image>Images/Line.bmp</Image>
       </Command.LargeImages>
     </Command>
 
-    <Command Name="cmdButtonMoreB"
+    <Command Name="cmdButtonDrawRectangle"
 
-             Symbol="ID_CMD_MORE_B"
+             Symbol="ID_CMD_DRAW_RECTANGLE"
 
-             LabelTitle="More B"
+             LabelTitle="Rectangle"
 
-             LabelDescription="Sub button B">
+             LabelDescription="Draw Rectangle shape">
       <Command.LargeImages>
-        <Image>Images/New_32px.bmp</Image>
+        <Image>Images/Rectangle.bmp</Image>
       </Command.LargeImages>
     </Command>
 
-    <Command Name="cmdButtonMoreC"
+    <Command Name="cmdButtonDrawEllipse"
 
-             Symbol="ID_CMD_MORE_C"
+             Symbol="ID_CMD_DRAW_ELLIPSE"
 
-             LabelTitle="More C"
+             LabelTitle="Ellipse"
 
-             LabelDescription="Sub button C">
+             LabelDescription="Draw Ellipse shape">
       <Command.LargeImages>
-        <Image>Images/New_32px.bmp</Image>
+        <Image>Images/Ellipse.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonDrawCurve"
+
+             Symbol="ID_CMD_DRAW_CURVE"
+             Id='11'
+             LabelTitle="Curve"
+
+             LabelDescription="Draw Curve Shape">
+      <Command.LargeImages>
+        <Image>Images/Curve.bmp</Image>
       </Command.LargeImages>
     </Command>
 
@@ -109,32 +150,65 @@
              LabelTitle="Main">
     </Command>
 
-    <Command Name="cmdTabMore"
+    <Command Name="cmdGroupShape"
 
-             Symbol="ID_CMD_TAB_MORE"
+              Symbol="ID_CMD_GROUP_SHAPE"
 
-             LabelTitle="More">
+              LabelTitle="Shape">
     </Command>
+    <Command Name="cmdGroupColor"
 
-    <Command Name="cmdGroupFileActions"
-
-             Symbol="ID_CMD_GROUP_FILE"
-
-             LabelTitle="File Actions">
-    </Command>
-
-    <Command Name="cmdGroupExit"
-
-             Symbol="ID_CMD_GROUP_EXIT"
+             Symbol="ID_CMD_GROUP_COLOR"
 
              LabelTitle="">
     </Command>
+    <Command Name='cmdDropDownGallerySize'
+             Symbol="ID_CMD_DROPDOWN_SIZE"
+             LabelTitle='Size' >
+      <Command.LargeImages>
+        <Image>Images/Size.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name='cmdDropDownGalleryStyle'
+             Symbol="ID_CMD_DROPDOWN_STYLE"
+             LabelTitle='Style' >
+      <Command.LargeImages>
+        <Image>Images/Style.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name='cmdButtonColorRed' Symbol='ID_CMD_COLOR_RED'>
+      <Command.LargeImages>
+        <Image>Images/Red.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name='cmdButtonColorYellow' Symbol='ID_CMD_COLOR_YELLOW'>
+      <Command.LargeImages>
+        <Image>Images/Yellow.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name='cmdButtonColorBlack' Symbol='ID_CMD_COLOR_BLACK'>
+      <Command.LargeImages>
+        <Image>Images/Black.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name='cmdButtonColorBlue' Symbol='ID_CMD_COLOR_BLUE'>
+      <Command.LargeImages>
+        <Image>Images/Blue.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name='cmdButtonColorEditColor' Symbol='ID_CMD_COLOR_EDIT_COLOR' LabelTitle='Edit Color'>
+      <Command.LargeImages>
+        <Image>Images/EditColor.bmp</Image>
+      </Command.LargeImages>
+    </Command>
 
-    <Command Name="cmdGroupMore"
-
-             Symbol="ID_CMD_MORE"
-
-             LabelTitle="">
+    <Command Name='cmdGroupDropDownGallerySize'
+               Symbol="ID_CMD_GROUP_SIZE"
+               LabelTitle='' >
+    </Command>
+    <Command Name='cmdGroupDropDownGalleryStyle'
+               Symbol="ID_CMD_GROUP_STYLE"
+               LabelTitle='' >
     </Command>
   </Application.Commands>
 
@@ -143,29 +217,55 @@
       <Ribbon.Tabs>
         
         <Tab CommandName="cmdTabMain">
-          
-          <Group CommandName="cmdGroupFileActions" SizeDefinition="ThreeButtons">
-            <ToggleButton CommandName="cmdToggleButton" />
-            <Button CommandName="cmdButtonNew" />
-            <Button CommandName="cmdButtonOpen" />
-            <Button CommandName="cmdButtonSave" />
+
+          <Group CommandName="cmdGroupShape" SizeDefinition="FourButtons">
+            <ToggleButton CommandName="cmdButtonDrawLine" />
+            <ToggleButton CommandName="cmdButtonDrawRectangle" />
+            <ToggleButton CommandName="cmdButtonDrawEllipse" />
+            <ToggleButton CommandName="cmdButtonDrawCurve" />
+
           </Group>
-        
-          <Group CommandName="cmdGroupExit" SizeDefinition="OneButton">
+          <Group CommandName="cmdGroupColor" SizeDefinition="FiveButtons">
+            <ToggleButton CommandName="cmdButtonColorBlack" />
+            <ToggleButton CommandName="cmdButtonColorRed" />
+            <ToggleButton CommandName="cmdButtonColorYellow" />
+            <ToggleButton CommandName="cmdButtonColorBlue" />
+            <ToggleButton CommandName="cmdButtonColorEditColor" />
+          </Group>
+          <Group CommandName='cmdGroupDropDownGallerySize' SizeDefinition='OneButton'>
+            <DropDownGallery CommandName='cmdDropDownGallerySize' TextPosition='Hide' Type='Items' ItemHeight='32' ItemWidth='128' HasLargeItems='true'>
+              <DropDownGallery.MenuLayout>
+                <FlowMenuLayout Columns='1' Rows='7' Gripper='None' />
+              </DropDownGallery.MenuLayout>
+            </DropDownGallery>
+          </Group>
+
+          <Group CommandName='cmdGroupDropDownGalleryStyle' SizeDefinition='OneButton'>
+              <DropDownGallery CommandName='cmdDropDownGalleryStyle' TextPosition='Hide' Type='Items' ItemHeight='32' ItemWidth='128' HasLargeItems='true'>
+                <DropDownGallery.MenuLayout>
+                  <FlowMenuLayout Columns='1' Rows='5' Gripper='None' />
+                </DropDownGallery.MenuLayout>
+              </DropDownGallery>
+          </Group>
+          <!--<Group CommandName="cmdGroupExit" SizeDefinition="OneButton">
             <Button CommandName="cmdButtonExit" />
-          </Group>
-          
+          </Group>-->
         </Tab>
-        
-        <Tab CommandName ="cmdTabMore">
-          <Group CommandName="cmdGroupMore" SizeDefinition="ThreeButtons">
-            <Button CommandName="cmdButtonMoreA" />
-            <Button CommandName="cmdButtonMoreB" />
-            <Button CommandName="cmdButtonMoreC" />
-          </Group>
-        </Tab>
-        
       </Ribbon.Tabs>
+      <Ribbon.ApplicationMenu>
+        <ApplicationMenu>
+          <MenuGroup Class="MajorItems">
+            <Button CommandName='cmdButtonNew' />
+            <Button CommandName='cmdButtonOpenBinary' />
+            <Button CommandName='cmdButtonOpenBitmap' />
+            <Button CommandName='cmdButtonSaveBinary' />
+            <Button CommandName='cmdButtonSaveBitmap' />
+          </MenuGroup>
+          <MenuGroup Class="MajorItems">
+            <Button CommandName='cmdButtonExit' />
+          </MenuGroup>
+        </ApplicationMenu>
+      </Ribbon.ApplicationMenu>
     </Ribbon>
   </Application.Views>
 </Application>

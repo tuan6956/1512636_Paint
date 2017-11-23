@@ -40,6 +40,20 @@ void CRectangle::Draw(HDC hdc)
 {
 	int width = abs(pStart.x - pEnd.x);
 	int height = abs(pStart.y - pEnd.y);
+	if (pStart.x > pEnd.x)
+	{
+		if (pStart.y < pEnd.y)
+			std::swap(pStart.x, pEnd.x);
+		else
+			std::swap(pStart, pEnd);
+	}
+	else
+	{
+		if (pStart.y > pEnd.y)
+		{
+			std::swap(pStart.y, pEnd.y);
+		}
+	}
 	Graphics* graph = new Graphics(hdc);
 	graph->DrawRectangle(pen, pStart.x, pStart.y, width, height);
 	graph->Flush();
@@ -55,6 +69,21 @@ void CRectangle::Draw(HDC hdc, POINT ps, POINT pE)
 	pEnd = pE;
 	int width = abs(pStart.x - pEnd.x);
 	int height = abs(pStart.y - pEnd.y);
+	if (pStart.x > pEnd.x)
+	{
+		if (pStart.y < pEnd.y)
+			std::swap(pStart.x, pEnd.x);
+		else
+			std::swap(pStart, pEnd);
+	}
+	else
+	{
+		if (pStart.y > pEnd.y)
+		{
+			std::swap(pStart.y, pEnd.y);
+		}
+	}
+	
 	Graphics* graph = new Graphics(hdc);
 	graph->DrawRectangle(pen, pStart.x, pStart.y, width, height);
 	graph->Flush();
@@ -73,6 +102,19 @@ void CRectangle::SaveObject(std::fstream& out)
 	out.write((char*)&pStart, sizeof(pStart));
 	out.write((char*)&pEnd, sizeof(pEnd));
 
+}
+
+void CRectangle::ReadObject(std::fstream & in)
+{
+	in.read((char*)&pen, sizeof(pen));
+
+	//fs.read((char*)&hbrush, sizeof(hbrush));
+	in.read((char*)&pStart, sizeof(pStart));
+	in.read((char*)&pEnd, sizeof(pEnd));
+}
+
+void CRectangle::clearObject()
+{
 }
 
 void CRectangle::setPointStart(POINT pS)

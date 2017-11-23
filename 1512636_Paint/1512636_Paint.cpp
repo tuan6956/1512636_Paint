@@ -15,6 +15,7 @@
 #include "Line.h"
 #include "Rectangle.h"
 #include "Ellipse.h"
+#include "Curve.h"
 #include <vector>
 #include <fstream>
 #include <objidl.h>
@@ -30,6 +31,8 @@ using namespace Gdiplus;
 #define SHAPE_MODEL_LINE		0
 #define SHAPE_MODEL_RECTANGLE	1
 #define SHAPE_MODEL_ELLIPSE		2
+#define SHAPE_MODEL_CURVE		3
+
 
 #pragma region Default
 
@@ -106,7 +109,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 	wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_MY1512636_PAINT));
 	wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-	wcex.lpszMenuName = NULL; //MAKEINTRESOURCEW(IDC_MY1512636_PAINT);
+	wcex.lpszMenuName = 0;//  MAKEINTRESOURCEW(IDC_MY1512636_PAINT);
 	wcex.lpszClassName = szWindowClass;
 	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -156,14 +159,15 @@ bool _isClickDown = false;
 
 POINT pStart;					
 POINT pState;		
-int iTypeDraw = 0;
 
 std::vector<CShape*> vShape;
+int _iTypeDraw = 0;
 
 COLORREF _mainColor = 0;
 int _mainStyle = 0;
 int _mainWidth = 0;
-DashStyle _gDashStyle;
+
+DashStyle _gDashStyle[5] = { DashStyleSolid, DashStyleDot, DashStyleDash, DashStyleDashDot, DashStyleDashDotDot };
 bool _isChangeStyle = true;
 bool _isOpenBitmap = false;
 
@@ -176,6 +180,7 @@ HANDLE hOpenBitmap;
 GdiplusStartupInput gdiplusStartupInput;
 ULONG_PTR           gdiplusToken;
 
+UINT _mainHeightRibbon = 0;
 PBITMAPINFO CreateBitmapInfo(HWND hwnd, HBITMAP hBmp)
 {
 	BITMAP bmp;
@@ -184,13 +189,14 @@ PBITMAPINFO CreateBitmapInfo(HWND hwnd, HBITMAP hBmp)
 	GetObject(hBmp, sizeof(BITMAP), &bmp);
 
 	pbmi = static_cast<PBITMAPINFO>(LocalAlloc(LPTR, sizeof(BITMAPINFOHEADER)));
+	UINT heightRibbon = GetRibbonHeight();
 
 	pbmi->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 	RECT rect;
 	GetClientRect(hwnd, &rect);
 
 	pbmi->bmiHeader.biWidth = rect.right - rect.left;
-	pbmi->bmiHeader.biHeight = rect.bottom - rect.top;
+	pbmi->bmiHeader.biHeight = rect.bottom - rect.top ;
 	pbmi->bmiHeader.biPlanes = bmp.bmPlanes; // we are assuming that there is only one plane
 	pbmi->bmiHeader.biBitCount = bmp.bmBitsPixel;
 
@@ -212,6 +218,7 @@ int WriteBmpTofile(LPCWSTR pszFile, PBITMAPINFO pbi, HBITMAP hBmp, HDC hDC)
 	PBITMAPINFOHEADER pbih;
 	LPBYTE lpBits;
 	DWORD dwTemp;
+	UINT heightRibbon = GetRibbonHeight();
 
 	pbih = (PBITMAPINFOHEADER)pbi;
 	lpBits = (LPBYTE)GlobalAlloc(GMEM_FIXED, pbih->biSizeImage);
@@ -221,7 +228,7 @@ int WriteBmpTofile(LPCWSTR pszFile, PBITMAPINFO pbi, HBITMAP hBmp, HDC hDC)
 		return -1; // could not allocate bitmap
 	}
 
-	GetDIBits(hDC, hBmp, 0, (WORD)pbih->biHeight, lpBits, pbi, DIB_RGB_COLORS);
+	GetDIBits(hDC, hBmp, 0 , (WORD)pbih->biHeight, lpBits, pbi, DIB_RGB_COLORS);
 
 	hFile = CreateFile(pszFile,
 		GENERIC_READ | GENERIC_WRITE,
@@ -260,7 +267,7 @@ int WriteBmpTofile(LPCWSTR pszFile, PBITMAPINFO pbi, HBITMAP hBmp, HDC hDC)
 
 	return 1;
 }
-std::basic_string<TCHAR> getSaveFileName(HWND owner)
+std::basic_string<TCHAR> getSaveFileName(HWND owner, int type)
 {
 	TCHAR buffer[260] = TEXT("");
 	OPENFILENAME ofn = { 0 };
@@ -268,7 +275,7 @@ std::basic_string<TCHAR> getSaveFileName(HWND owner)
 	ofn.lStructSize = sizeof(ofn);
 	ofn.hwndOwner = owner;
 	ofn.lpstrFilter = L"Binary (*.bin) \0*.bin\0Bitmap (*.bmp)\0*.bmp\0All files (*.*)\0*.*\0";
-	ofn.nFilterIndex = 0; // Text | *.txt	ofn.lpstrFile = buffer;
+	ofn.nFilterIndex = type; // Text | *.txt	ofn.lpstrFile = buffer;
 	ofn.nMaxFile = 260;
 	//ofn.Flags = OFN_EXPLORER | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_ENABLEHOOK | OFN_NODEREFERENCELINKS | OFN_EXTENSIONDIFFERENT;
 	ofn.Flags = OFN_EXPLORER | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST ;
@@ -277,14 +284,26 @@ std::basic_string<TCHAR> getSaveFileName(HWND owner)
 	if (!check)
 		return TEXT("");
 	std::wstring path = ofn.lpstrFile;
-	/*int index = path.find(L".txt");
-	if (index == 0 && ofn.nFilterIndex == 0)
-		path.clear();
-	else if (index == -1 && ofn.nFilterIndex == 1)
-		path.append(L".txt");*/
+	if (type == 1)
+	{
+		int index = path.find(L".bin");
+		if (index == 0 && ofn.nFilterIndex == type)
+			path.clear();
+		else if (index == -1 && ofn.nFilterIndex == type)
+			path.append(L".bin");
+	}
+	else
+	{
+		int index = path.find(L".bmp");
+		if (index == 0 && ofn.nFilterIndex == type)
+			path.clear();
+		else if (index == -1 && ofn.nFilterIndex == type)
+			path.append(L".bmp");
+	}
 	return path;
+
 }
-std::basic_string<TCHAR> getOpenFileName(HWND owner)
+std::basic_string<TCHAR> getOpenFileName(HWND owner,int type)
 {
 	TCHAR buffer[260] = TEXT("");
 	OPENFILENAME ofn = { 0 };
@@ -292,14 +311,15 @@ std::basic_string<TCHAR> getOpenFileName(HWND owner)
 	ofn.lStructSize = sizeof(ofn);
 	ofn.hwndOwner = owner;
 	ofn.lpstrFilter = L"Binary (*.bin) \0*.bin\0Bitmap (*.bmp)\0*.bmp\0All files (*.*)\0*.*\0";
-	ofn.nFilterIndex = 0; // Text | *.txt	ofn.lpstrFile = buffer;
+	ofn.nFilterIndex = type; // Text | *.txt	ofn.lpstrFile = buffer;
 	ofn.nMaxFile = 260;
 	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
 	ofn.lpstrInitialDir = NULL;
 	if (!GetOpenFileName(&ofn))
 		return TEXT("");
-
-	return ofn.lpstrFile;
+	std::wstring path = ofn.lpstrFile;
+	
+	return path;
 }
 
 
@@ -364,7 +384,6 @@ void OnLButtonDown(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags)
 	pStart.x = x;
 	pStart.y = y;
 	_isClickDown = true;
-	
 	SetCapture(hwnd);
 }
 void OnLButtonUp(HWND hwnd, int x, int y, UINT keyFlags)
@@ -372,7 +391,7 @@ void OnLButtonUp(HWND hwnd, int x, int y, UINT keyFlags)
 
 	pState.x = x;
 	pState.y = y;
-	if (keyFlags & MK_SHIFT && iTypeDraw != SHAPE_MODEL_LINE)
+	if (keyFlags & MK_SHIFT && _iTypeDraw != SHAPE_MODEL_LINE)
 		fixCoordiSquare();
 
 	/*HBRUSH hbrush = GetStockBrush(NULL_BRUSH);
@@ -380,13 +399,14 @@ void OnLButtonUp(HWND hwnd, int x, int y, UINT keyFlags)
 	Color color;
 	color.SetFromCOLORREF(_mainColor);
 	Pen* pen = new Pen(color, _mainWidth);
-	pen->SetDashStyle(_gDashStyle);
+	pen->SetDashStyle(_gDashStyle[_mainStyle]);
 
 	//pen->SetDashStyle(DashStyle(_mainStyle));
-	_ShapeModle[iTypeDraw]->setPen(pen);
-	/*_ShapeModle[iTypeDraw]->setBrush(hbrush);
-	_ShapeModle[iTypeDraw]->setPen(pen_draw);*/
-	vShape.push_back(_ShapeModle[iTypeDraw]->Clone());
+	_ShapeModle[_iTypeDraw]->setPen(pen);
+	/*_ShapeModle[_iTypeDraw]->setBrush(hbrush);
+	_ShapeModle[_iTypeDraw]->setPen(pen_draw);*/
+	vShape.push_back(_ShapeModle[_iTypeDraw]->Clone());
+	_ShapeModle[_iTypeDraw]->clearObject();
 	InvalidateRect(hwnd, NULL, FALSE);
 
 	ReleaseCapture();
@@ -400,21 +420,26 @@ void OnMouseMove(HWND hwnd, int x, int y, UINT keyFlags)
 
 		pState.x = x;
 		pState.y = y;
-		if (keyFlags & MK_SHIFT && iTypeDraw != SHAPE_MODEL_LINE)
+		if (keyFlags & MK_SHIFT && _iTypeDraw != SHAPE_MODEL_LINE)
 			fixCoordiSquare();
 		InvalidateRect(hwnd, NULL, FALSE);
 	}
 }
 void OnPaint(HWND hWnd)
 {
-	RECT rect;
+	RECT rect, rectribbon, rectwindow;
 	PAINTSTRUCT ps;
 
 	HDC hdc;
 
 	hdc = BeginPaint(hWnd, &ps);
-
-
+	UINT heightRibbon = GetRibbonHeight();
+	/*GetWindowRect(hWnd,&rectwindow);
+	if (_mainHeightRibbon != heightRibbon)
+	{
+		GetClientRect(hWnd, &rectribbon);
+		MoveWindow(hWnd, rectwindow.left, rectwindow.top , rectribbon.right - rectribbon.left, rectribbon.bottom - rectribbon.top,1);
+	}*/
 	GetClientRect(hWnd, &rect);
 
 
@@ -434,7 +459,7 @@ void OnPaint(HWND hWnd)
 	Color color;
 	color.SetFromCOLORREF(_mainColor);
 	Pen* pen = new Pen(color, _mainWidth);
-	pen->SetDashStyle(_gDashStyle);
+	pen->SetDashStyle(_gDashStyle[_mainStyle]);
 
 	for (int i = 0; i < vShape.size(); i++)
 	{
@@ -447,25 +472,28 @@ void OnPaint(HWND hWnd)
 		{
 			/*HBRUSH hbrush = GetStockBrush(NULL_BRUSH);
 			HPEN pen_draw = CreatePen(_mainStyle, _mainWidth, _mainColor);
-			_ShapeModle[iTypeDraw]->setBrush(hbrush);
-			_ShapeModle[iTypeDraw]->setPen(pen_draw);*/
+			_ShapeModle[_iTypeDraw]->setBrush(hbrush);
+			_ShapeModle[_iTypeDraw]->setPen(pen_draw);*/
 			
 			color.SetFromCOLORREF(_mainColor);
 			pen->SetColor(color);
 			//pen->SetColor(Color(255, 0, 0, 0));
 			pen->SetWidth(_mainWidth);
 		
-			pen->SetDashStyle(_gDashStyle);
+			pen->SetDashStyle(_gDashStyle[_mainStyle]);
 
-			//_ShapeModle[iTypeDraw]->setPen(pen);
+			//_ShapeModle[_iTypeDraw]->setPen(pen);
 			_isChangeStyle = false;
 		}
-		//_ShapeModle[iTypeDraw]->Draw(hdc_virtual,pStart,pState);
-		_ShapeModle[iTypeDraw]->setPen(pen);
-		_ShapeModle[iTypeDraw]->Draw(hdc_virtual,pStart,pState);
+		//_ShapeModle[_iTypeDraw]->Draw(hdc_virtual,pStart,pState);
+		_ShapeModle[_iTypeDraw]->setPen(pen);
+	/*	if (_iTypeDraw == SHAPE_MODEL_CURVE)
+			pStart = pState;*/
+		
+		_ShapeModle[_iTypeDraw]->Draw(hdc_virtual,pStart,pState);
 
 	}
-	BitBlt(hdc, 0, 147, rect.right, rect.bottom, hdc_virtual, 0, 147, SRCCOPY);
+	BitBlt(hdc, 0, heightRibbon, rect.right, rect.bottom, hdc_virtual, 0, heightRibbon, SRCCOPY);
 
 	DeleteObject(hdc_virtual);
 	/*DeleteObject(hdc_virtual);
@@ -484,15 +512,15 @@ void OnCommand(HWND hWnd, int id, HWND hwndCtl, UINT codeNotify)
 	{
 	#pragma region Type
 	case ID_TYPE_LINE:
-		iTypeDraw = SHAPE_MODEL_LINE;
+		_iTypeDraw = SHAPE_MODEL_LINE;
 		CheckMenu(hWnd, 1, ID_TYPE_LINE);
 		break;
 	case ID_TYPE_RECTANGLE:
-		iTypeDraw = SHAPE_MODEL_RECTANGLE;
+		_iTypeDraw = SHAPE_MODEL_RECTANGLE;
 		CheckMenu(hWnd, 1, ID_TYPE_RECTANGLE);
 		break;
 	case ID_TYPE_ELLIPSE:
-		iTypeDraw = SHAPE_MODEL_ELLIPSE;
+		_iTypeDraw = SHAPE_MODEL_ELLIPSE;
 		CheckMenu(hWnd, 1, ID_TYPE_ELLIPSE);
 		break;
 	#pragma endregion
@@ -501,32 +529,32 @@ void OnCommand(HWND hWnd, int id, HWND hwndCtl, UINT codeNotify)
 
 	case ID_STYLE_SOILD:
 		_mainStyle = PS_SOLID;
-		_gDashStyle = DashStyle::DashStyleSolid;
+		//_gDashStyle = DashStyle::DashStyleSolid;
 		CheckMenu(hWnd, 2, ID_STYLE_SOILD);
 		break;
 	case ID_STYLE_DASH:
 		_mainStyle = PS_DASH;
-		_gDashStyle = DashStyle::DashStyleDash;
+		//_gDashStyle = DashStyle::DashStyleDash;
 		CheckMenu(hWnd, 2, ID_STYLE_DASH);
 		break;
 	case ID_STYLE_DASHDOT:
 		_mainStyle = PS_DASHDOT;
-		_gDashStyle = DashStyle::DashStyleDashDot;
+		//_gDashStyle = DashStyle::DashStyleDashDot;
 		CheckMenu(hWnd, 2, ID_STYLE_DASHDOT);
 		break;
 	case ID_STYLE_DASHDOTDOT:
 		_mainStyle = PS_DASHDOTDOT;
-		_gDashStyle = DashStyle::DashStyleDashDotDot;
+		//_gDashStyle = DashStyle::DashStyleDashDotDot;
 		CheckMenu(hWnd, 2, ID_STYLE_DASHDOTDOT);
 		break;
 	case ID_STYLE_NULL:
 		_mainStyle = PS_NULL;
-		_gDashStyle = DashStyle::DashStyleCustom;
+		//_gDashStyle = DashStyle::DashStyleCustom;
 		CheckMenu(hWnd, 2, ID_STYLE_NULL);
 		break;
 	case ID_STYLE_DOT:
 		_mainStyle = PS_DOT;
-		_gDashStyle = DashStyle::DashStyleDot;
+		//_gDashStyle = DashStyle::DashStyleDot;
 		CheckMenu(hWnd, 2, PS_DOT);
 		break;
 	#pragma endregion
@@ -580,34 +608,40 @@ void OnCommand(HWND hWnd, int id, HWND hwndCtl, UINT codeNotify)
 		InvalidateRect(hWnd, NULL, FALSE);
 		break;
 	case ID_SAVE_BINARY:
-		_pathObject = getSaveFileName(hWnd);
+		_pathObject = getSaveFileName(hWnd,1);
 		if (_pathObject.empty())
 			MessageBox(hWnd, L"You haven't chosen any file!", L"Cannot Save", MB_OK);
 		else
 		{
 			std::fstream fs;
+			int sizeShapes = vShape.size();
 			fs.open(_pathObject, std::ios::out | std::ios::binary);
+			fs.write((char*)&sizeShapes, sizeof(int));
+
 			for (int i = 0; i < vShape.size(); i++)
-			vShape[i]->SaveObject(fs);
+				vShape[i]->SaveObject(fs);
 			fs.close();
 			MessageBox(hWnd, L"Save completed!", L"Save object", MB_OK);
 
 		}
 		break;
 	case ID_SAVE_BITMAP:
-		_pathObject = getSaveFileName(hWnd);
+		_pathObject = getSaveFileName(hWnd,2);
 		if(_pathObject.empty())
 			MessageBox(hWnd, L"You haven't chosen any file!", L"Cannot Save", MB_OK);
 		else
 		{
+			UINT heightRibbon = GetRibbonHeight();
+
 			RECT rect;
 			GetClientRect(hWnd, &rect);
 			HDC _hdc = GetDC(hWnd);
 			HDC hdc_temp= CreateCompatibleDC(_hdc);
 
+			HDC hdcTemp = GetDC(hWnd);
 			HBITMAP hbm = CreateCompatibleBitmap(GetDC(hWnd), rect.right, rect.bottom);
 			SelectObject(hdc_temp, hbm);
-			BitBlt(hdc_temp, 0, 0, rect.right, rect.bottom, _hdc, 0, 0, SRCCOPY);
+			BitBlt(hdc_temp, 0, heightRibbon, rect.right, rect.bottom, _hdc, 0, heightRibbon, SRCCOPY);
 
 			PBITMAPINFO info = CreateBitmapInfo(hWnd, hbm);
 			WriteBmpTofile(_pathObject.c_str(), info, hbm, _hdc);
@@ -621,7 +655,7 @@ void OnCommand(HWND hWnd, int id, HWND hwndCtl, UINT codeNotify)
 		}	
 		break;
 	case ID_OPEN_BINARY:
-		_pathObject = getOpenFileName(hWnd);
+		_pathObject = getOpenFileName(hWnd,1);
 		if (_pathObject.empty())
 			MessageBox(hWnd, L"You haven't chosen any file!", L"Cannot Open", MB_OK);
 		else
@@ -639,30 +673,35 @@ void OnCommand(HWND hWnd, int id, HWND hwndCtl, UINT codeNotify)
 			HBRUSH hbrush;*/
 			Pen* pen = NULL;
 			vShape.clear();
-			while (!fs.eof())
+			int sizeShapes = 0;
+			fs.read((char*)&sizeShapes, sizeof(int));
+			
+			while (sizeShapes--)
 			{
 				fs.read((char*)&iIndex, sizeof(int));
 
-				if (iIndex > 3 || iIndex < 1)
+				if (iIndex > 4 || iIndex < 1)
 					continue;
 				iIndex -= 1;
-				fs.read((char*)&pen, sizeof(pen));
+				_ShapeModle[iIndex]->ReadObject(fs);
+				//fs.read((char*)&pen, sizeof(pen));
 
-				//fs.read((char*)&hbrush, sizeof(hbrush));
-				fs.read((char*)&pStart, sizeof(pStart));
-				fs.read((char*)&pState, sizeof(pState));
-				//_ShapeModle[iIndex]->setBrush(hbrush);
-				_ShapeModle[iIndex]->setPen(pen);
-				_ShapeModle[iIndex]->setPointStart(pStart);
-				_ShapeModle[iIndex]->setPointEnd(pState);
+				////fs.read((char*)&hbrush, sizeof(hbrush));
+				//fs.read((char*)&pStart, sizeof(pStart));
+				//fs.read((char*)&pState, sizeof(pState));
+				////_ShapeModle[iIndex]->setBrush(hbrush);
+				//_ShapeModle[iIndex]->setPen(pen);
+				//_ShapeModle[iIndex]->setPointStart(pStart);
+				//_ShapeModle[iIndex]->setPointEnd(pState);
 
 				vShape.push_back(_ShapeModle[iIndex]->Clone());
+				_ShapeModle[iIndex]->clearObject();
 			}
 			fs.close();
 		}
 		break;
 	case ID_OPEN_BITMAP:
-		_pathObject = getOpenFileName(hWnd);
+		_pathObject = getOpenFileName(hWnd,2);
 		if (_pathObject.empty())
 			MessageBox(hWnd, L"You haven't chosen any file!", L"Cannot Open", MB_OK);
 		else
@@ -686,8 +725,11 @@ void OnCommand(HWND hWnd, int id, HWND hwndCtl, UINT codeNotify)
 			else if (ret == 1)
 			{
 				GetObject(hOpenBitmap, sizeof(bitmap), &bitmap);
+				UINT heightRibbon = GetRibbonHeight();
+
 				//BitBlt(hdcMem, 0, 0, bitmap.bmWidth, bitmap.bmHeight, hdcOpenBitmap, 0, 0, SRCCOPY);
 				GetClientRect(hWnd, &rect);
+				//rect.top += heightRibbon;
 				InvalidateRect(hWnd, &rect, FALSE);
 			}
 			
@@ -722,8 +764,18 @@ BOOL OnCreate(HWND hwnd, LPCREATESTRUCT lpCreateStruct)
 	_ShapeModle.push_back(new CLine());
 	_ShapeModle.push_back(new CRectangle());
 	_ShapeModle.push_back(new CEllipse());
-	
+	_ShapeModle.push_back(new CCurve());
+
+	_mainHeightRibbon = GetRibbonHeight();
 	return TRUE;
+}
+void OnSize(HWND hWnd, UINT message, int sx, int sy)
+{
+	UINT heightRibbon = GetRibbonHeight();
+	if (_mainHeightRibbon != heightRibbon)
+	{
+		MoveWindow(hWnd, 0, 0, sx, sy, 1);
+	}
 }
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -737,6 +789,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		HANDLE_MSG(hWnd, WM_PAINT, OnPaint);
 		HANDLE_MSG(hWnd, WM_COMMAND, OnCommand);
 		HANDLE_MSG(hWnd, WM_DESTROY, OnDestroy);
+		HANDLE_MSG(hWnd, WM_SIZE, OnSize);
+
 
 	}
 	return DefWindowProc(hWnd, message, wParam, lParam);

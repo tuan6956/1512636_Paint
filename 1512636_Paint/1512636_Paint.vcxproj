@@ -147,6 +147,7 @@
     <ClInclude Include="Curve.h" />
     <ClInclude Include="Ellipse.h" />
     <ClInclude Include="Line.h" />
+    <ClInclude Include="PropertySet.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RibbonFramework.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="Curve.cpp" />
     <ClCompile Include="Ellipse.cpp" />
     <ClCompile Include="Line.cpp" />
+    <ClCompile Include="PropertySet.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RibbonFramework.cpp" />
     <ClCompile Include="Shape.cpp" />
@@ -178,13 +180,29 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="1512636_Paint.ico" />
+    <Image Include="Images\Dash.bmp" />
+    <Image Include="Images\DashDot.bmp" />
+    <Image Include="Images\DashDotDot.bmp" />
+    <Image Include="Images\Dot.bmp" />
+    <Image Include="Images\line01.bmp" />
+    <Image Include="Images\line02.bmp" />
+    <Image Include="Images\line03.bmp" />
+    <Image Include="Images\line04.bmp" />
+    <Image Include="Images\line05.bmp" />
+    <Image Include="Images\line06.bmp" />
+    <Image Include="Images\line07.bmp" />
+    <Image Include="Images\Soild.bmp" />
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ribbon.bml" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="Ribbon.xml" />
+    <CustomBuild Include="Ribbon.xml">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">uicc.exe Ribbon.xml Ribbon.bml /header:RibbonIDs.h /res:Ribbon.rc</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Ribbon.bml; RibbonIDs.h; Ribbon.rc</Outputs>
+      <SubType>Designer</SubType>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

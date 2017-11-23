@@ -81,3 +81,15 @@ void DestroyFramework()
 		g_pApplication = NULL;
 	}
 }
+UINT GetRibbonHeight()
+{
+	UINT ribbonHeight = 0;
+	if (g_pFramework)
+	{
+		IUIRibbon* pRibbon;
+		g_pFramework->GetView(0, IID_PPV_ARGS(&pRibbon));
+		pRibbon->GetHeight(&ribbonHeight);
+		pRibbon->Release();
+	}
+	return ribbonHeight;
+}

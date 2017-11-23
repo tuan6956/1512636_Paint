@@ -56,6 +56,22 @@ void CLine::SaveObject(std::fstream &out)
 	out.write((char*)&pEnd, sizeof(pEnd));
 }
 
+void CLine::ReadObject(std::fstream & in)
+{
+	in.read((char*)&pen, sizeof(pen));
+
+	//fs.read((char*)&hbrush, sizeof(hbrush));
+	in.read((char*)&pStart, sizeof(pStart));
+	in.read((char*)&pEnd, sizeof(pEnd));
+
+}
+
+void CLine::clearObject()
+{
+}
+
+
+
 void CLine::setPointStart(POINT pS)
 {
 	pStart = pS;

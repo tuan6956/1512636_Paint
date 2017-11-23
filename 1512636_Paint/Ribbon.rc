@@ -25,49 +25,91 @@ BEGIN
     ID_CMD_NEW_TooltipDescription_RESID L"Create a new image." /* TooltipDescription ID_CMD_NEW_TooltipDescription_RESID: (null) */
 END
 
-ID_CMD_NEW_LargeImages_RESID    BITMAP    "Images\\New_32px.bmp" /* LargeImages ID_CMD_NEW_LargeImages_RESID: (null) */
+ID_CMD_NEW_LargeImages_RESID    BITMAP    "Images\\New.bmp" /* LargeImages ID_CMD_NEW_LargeImages_RESID: (null) */
 STRINGTABLE 
 BEGIN
-    ID_CMD_OPEN_LabelTitle_RESID L"Open" /* LabelTitle ID_CMD_OPEN_LabelTitle_RESID: (null) */
+    ID_CMD_OPEN_BINARY_LabelTitle_RESID L"Open binary file" /* LabelTitle ID_CMD_OPEN_BINARY_LabelTitle_RESID: (null) */
 END
 
 STRINGTABLE 
 BEGIN
-    ID_CMD_OPEN_LabelDescription_RESID L"Open Description" /* LabelDescription ID_CMD_OPEN_LabelDescription_RESID: (null) */
+    ID_CMD_OPEN_BINARY_LabelDescription_RESID L"Open binary file" /* LabelDescription ID_CMD_OPEN_BINARY_LabelDescription_RESID: (null) */
 END
 
 STRINGTABLE 
 BEGIN
-    ID_CMD_OPEN_TooltipTitle_RESID L"Open (Ctrl+O)" /* TooltipTitle ID_CMD_OPEN_TooltipTitle_RESID: (null) */
+    ID_CMD_OPEN_BINARY_TooltipTitle_RESID L"Open (Ctrl+O)" /* TooltipTitle ID_CMD_OPEN_BINARY_TooltipTitle_RESID: (null) */
 END
 
 STRINGTABLE 
 BEGIN
-    ID_CMD_OPEN_TooltipDescription_RESID L"Open an existing image." /* TooltipDescription ID_CMD_OPEN_TooltipDescription_RESID: (null) */
+    ID_CMD_OPEN_BINARY_TooltipDescription_RESID L"Open an existing image." /* TooltipDescription ID_CMD_OPEN_BINARY_TooltipDescription_RESID: (null) */
 END
 
-ID_CMD_OPEN_LargeImages_RESID    BITMAP    "Images\\New_32px.bmp" /* LargeImages ID_CMD_OPEN_LargeImages_RESID: (null) */
+ID_CMD_OPEN_BINARY_LargeImages_RESID    BITMAP    "Images\\Open.bmp" /* LargeImages ID_CMD_OPEN_BINARY_LargeImages_RESID: (null) */
 STRINGTABLE 
 BEGIN
-    ID_CMD_SAVE_LabelTitle_RESID L"Save" /* LabelTitle ID_CMD_SAVE_LabelTitle_RESID: (null) */
-END
-
-STRINGTABLE 
-BEGIN
-    ID_CMD_SAVE_LabelDescription_RESID L"Save Description" /* LabelDescription ID_CMD_SAVE_LabelDescription_RESID: (null) */
+    ID_CMD_OPEN_BITMAP_LabelTitle_RESID L"Open bitmap file" /* LabelTitle ID_CMD_OPEN_BITMAP_LabelTitle_RESID: (null) */
 END
 
 STRINGTABLE 
 BEGIN
-    ID_CMD_SAVE_TooltipTitle_RESID L"Save (Ctrl+S)" /* TooltipTitle ID_CMD_SAVE_TooltipTitle_RESID: (null) */
+    ID_CMD_OPEN_BITMAP_LabelDescription_RESID L"Open bitmap file" /* LabelDescription ID_CMD_OPEN_BITMAP_LabelDescription_RESID: (null) */
 END
 
 STRINGTABLE 
 BEGIN
-    ID_CMD_SAVE_TooltipDescription_RESID L"Save the current image." /* TooltipDescription ID_CMD_SAVE_TooltipDescription_RESID: (null) */
+    ID_CMD_OPEN_BITMAP_TooltipTitle_RESID L"Open (Ctrl+O)" /* TooltipTitle ID_CMD_OPEN_BITMAP_TooltipTitle_RESID: (null) */
 END
 
-ID_CMD_SAVE_LargeImages_RESID    BITMAP    "Images\\New_32px.bmp" /* LargeImages ID_CMD_SAVE_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_OPEN_BITMAP_TooltipDescription_RESID L"Open an existing image." /* TooltipDescription ID_CMD_OPEN_BITMAP_TooltipDescription_RESID: (null) */
+END
+
+ID_CMD_OPEN_BITMAP_LargeImages_RESID    BITMAP    "Images\\Open.bmp" /* LargeImages ID_CMD_OPEN_BITMAP_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_SAVE_BINARY_LabelTitle_RESID L"Save binary file" /* LabelTitle ID_CMD_SAVE_BINARY_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_SAVE_BINARY_LabelDescription_RESID L"Save binary file" /* LabelDescription ID_CMD_SAVE_BINARY_LabelDescription_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_SAVE_BINARY_TooltipTitle_RESID L"Save (Ctrl+S)" /* TooltipTitle ID_CMD_SAVE_BINARY_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_SAVE_BINARY_TooltipDescription_RESID L"Save the current image." /* TooltipDescription ID_CMD_SAVE_BINARY_TooltipDescription_RESID: (null) */
+END
+
+ID_CMD_SAVE_BINARY_LargeImages_RESID    BITMAP    "Images\\Save.bmp" /* LargeImages ID_CMD_SAVE_BINARY_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_SAVE_BITMAP_LabelTitle_RESID L"Save bitmap file" /* LabelTitle ID_CMD_SAVE_BITMAP_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_SAVE_BITMAP_LabelDescription_RESID L"Save bitmap file" /* LabelDescription ID_CMD_SAVE_BITMAP_LabelDescription_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_SAVE_BITMAP_TooltipTitle_RESID L"Save (Ctrl+S)" /* TooltipTitle ID_CMD_SAVE_BITMAP_TooltipTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_SAVE_BITMAP_TooltipDescription_RESID L"Save the current image." /* TooltipDescription ID_CMD_SAVE_BITMAP_TooltipDescription_RESID: (null) */
+END
+
+ID_CMD_SAVE_BITMAP_LargeImages_RESID    BITMAP    "Images\\Save.bmp" /* LargeImages ID_CMD_SAVE_BITMAP_LargeImages_RESID: (null) */
 STRINGTABLE 
 BEGIN
     ID_CMD_EXIT_LabelTitle_RESID L"Exit" /* LabelTitle ID_CMD_EXIT_LabelTitle_RESID: (null) */
@@ -88,40 +130,51 @@ BEGIN
     ID_CMD_EXIT_TooltipDescription_RESID L"Exit application." /* TooltipDescription ID_CMD_EXIT_TooltipDescription_RESID: (null) */
 END
 
-ID_CMD_EXIT_LargeImages_RESID    BITMAP    "Images\\check4.bmp" /* LargeImages ID_CMD_EXIT_LargeImages_RESID: (null) */
+ID_CMD_EXIT_LargeImages_RESID    BITMAP    "Images\\Close.bmp" /* LargeImages ID_CMD_EXIT_LargeImages_RESID: (null) */
 STRINGTABLE 
 BEGIN
-    ID_CMD_MORE_A_LabelTitle_RESID L"More A" /* LabelTitle ID_CMD_MORE_A_LabelTitle_RESID: (null) */
+    ID_CMD_DRAW_LINE_LabelTitle_RESID L"Line" /* LabelTitle ID_CMD_DRAW_LINE_LabelTitle_RESID: (null) */
 END
 
 STRINGTABLE 
 BEGIN
-    ID_CMD_MORE_A_LabelDescription_RESID L"Sub button A" /* LabelDescription ID_CMD_MORE_A_LabelDescription_RESID: (null) */
+    ID_CMD_DRAW_LINE_LabelDescription_RESID L"Draw line shape" /* LabelDescription ID_CMD_DRAW_LINE_LabelDescription_RESID: (null) */
 END
 
-ID_CMD_MORE_A_LargeImages_RESID    BITMAP    "Images\\New_32px.bmp" /* LargeImages ID_CMD_MORE_A_LargeImages_RESID: (null) */
+ID_CMD_DRAW_LINE_LargeImages_RESID    BITMAP    "Images\\Line.bmp" /* LargeImages ID_CMD_DRAW_LINE_LargeImages_RESID: (null) */
 STRINGTABLE 
 BEGIN
-    ID_CMD_MORE_B_LabelTitle_RESID L"More B" /* LabelTitle ID_CMD_MORE_B_LabelTitle_RESID: (null) */
-END
-
-STRINGTABLE 
-BEGIN
-    ID_CMD_MORE_B_LabelDescription_RESID L"Sub button B" /* LabelDescription ID_CMD_MORE_B_LabelDescription_RESID: (null) */
-END
-
-ID_CMD_MORE_B_LargeImages_RESID    BITMAP    "Images\\New_32px.bmp" /* LargeImages ID_CMD_MORE_B_LargeImages_RESID: (null) */
-STRINGTABLE 
-BEGIN
-    ID_CMD_MORE_C_LabelTitle_RESID L"More C" /* LabelTitle ID_CMD_MORE_C_LabelTitle_RESID: (null) */
+    ID_CMD_DRAW_RECTANGLE_LabelTitle_RESID L"Rectangle" /* LabelTitle ID_CMD_DRAW_RECTANGLE_LabelTitle_RESID: (null) */
 END
 
 STRINGTABLE 
 BEGIN
-    ID_CMD_MORE_C_LabelDescription_RESID L"Sub button C" /* LabelDescription ID_CMD_MORE_C_LabelDescription_RESID: (null) */
+    ID_CMD_DRAW_RECTANGLE_LabelDescription_RESID L"Draw Rectangle shape" /* LabelDescription ID_CMD_DRAW_RECTANGLE_LabelDescription_RESID: (null) */
 END
 
-ID_CMD_MORE_C_LargeImages_RESID    BITMAP    "Images\\New_32px.bmp" /* LargeImages ID_CMD_MORE_C_LargeImages_RESID: (null) */
+ID_CMD_DRAW_RECTANGLE_LargeImages_RESID    BITMAP    "Images\\Rectangle.bmp" /* LargeImages ID_CMD_DRAW_RECTANGLE_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_DRAW_ELLIPSE_LabelTitle_RESID L"Ellipse" /* LabelTitle ID_CMD_DRAW_ELLIPSE_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_DRAW_ELLIPSE_LabelDescription_RESID L"Draw Ellipse shape" /* LabelDescription ID_CMD_DRAW_ELLIPSE_LabelDescription_RESID: (null) */
+END
+
+ID_CMD_DRAW_ELLIPSE_LargeImages_RESID    BITMAP    "Images\\Ellipse.bmp" /* LargeImages ID_CMD_DRAW_ELLIPSE_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_DRAW_CURVE_LabelTitle_RESID L"Curve" /* LabelTitle ID_CMD_DRAW_CURVE_LabelTitle_RESID: (null) */
+END
+
+STRINGTABLE 
+BEGIN
+    ID_CMD_DRAW_CURVE_LabelDescription_RESID L"Draw Curve Shape" /* LabelDescription ID_CMD_DRAW_CURVE_LabelDescription_RESID: (null) */
+END
+
+ID_CMD_DRAW_CURVE_LargeImages_RESID    BITMAP    "Images\\Curve.bmp" /* LargeImages ID_CMD_DRAW_CURVE_LargeImages_RESID: (null) */
 STRINGTABLE 
 BEGIN
     ID_CMD_TAB_MAIN_LabelTitle_RESID L"Main" /* LabelTitle ID_CMD_TAB_MAIN_LabelTitle_RESID: (null) */
@@ -129,22 +182,44 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_CMD_TAB_MORE_LabelTitle_RESID L"More" /* LabelTitle ID_CMD_TAB_MORE_LabelTitle_RESID: (null) */
+    ID_CMD_GROUP_SHAPE_LabelTitle_RESID L"Shape" /* LabelTitle ID_CMD_GROUP_SHAPE_LabelTitle_RESID: (null) */
 END
 
 STRINGTABLE 
 BEGIN
-    ID_CMD_GROUP_FILE_LabelTitle_RESID L"File Actions" /* LabelTitle ID_CMD_GROUP_FILE_LabelTitle_RESID: (null) */
+    ID_CMD_GROUP_COLOR_LabelTitle_RESID L"" /* LabelTitle ID_CMD_GROUP_COLOR_LabelTitle_RESID: (null) */
 END
 
 STRINGTABLE 
 BEGIN
-    ID_CMD_GROUP_EXIT_LabelTitle_RESID L"" /* LabelTitle ID_CMD_GROUP_EXIT_LabelTitle_RESID: (null) */
+    ID_CMD_DROPDOWN_SIZE_LabelTitle_RESID L"Size" /* LabelTitle ID_CMD_DROPDOWN_SIZE_LabelTitle_RESID: (null) */
+END
+
+ID_CMD_DROPDOWN_SIZE_LargeImages_RESID    BITMAP    "Images\\Size.bmp" /* LargeImages ID_CMD_DROPDOWN_SIZE_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_DROPDOWN_STYLE_LabelTitle_RESID L"Style" /* LabelTitle ID_CMD_DROPDOWN_STYLE_LabelTitle_RESID: (null) */
+END
+
+ID_CMD_DROPDOWN_STYLE_LargeImages_RESID    BITMAP    "Images\\Style.bmp" /* LargeImages ID_CMD_DROPDOWN_STYLE_LargeImages_RESID: (null) */
+ID_CMD_COLOR_RED_LargeImages_RESID    BITMAP    "Images\\Red.bmp" /* LargeImages ID_CMD_COLOR_RED_LargeImages_RESID: (null) */
+ID_CMD_COLOR_YELLOW_LargeImages_RESID    BITMAP    "Images\\Yellow.bmp" /* LargeImages ID_CMD_COLOR_YELLOW_LargeImages_RESID: (null) */
+ID_CMD_COLOR_BLACK_LargeImages_RESID    BITMAP    "Images\\Black.bmp" /* LargeImages ID_CMD_COLOR_BLACK_LargeImages_RESID: (null) */
+ID_CMD_COLOR_BLUE_LargeImages_RESID    BITMAP    "Images\\Blue.bmp" /* LargeImages ID_CMD_COLOR_BLUE_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_COLOR_EDIT_COLOR_LabelTitle_RESID L"Edit Color" /* LabelTitle ID_CMD_COLOR_EDIT_COLOR_LabelTitle_RESID: (null) */
+END
+
+ID_CMD_COLOR_EDIT_COLOR_LargeImages_RESID    BITMAP    "Images\\EditColor.bmp" /* LargeImages ID_CMD_COLOR_EDIT_COLOR_LargeImages_RESID: (null) */
+STRINGTABLE 
+BEGIN
+    ID_CMD_GROUP_SIZE_LabelTitle_RESID L"" /* LabelTitle ID_CMD_GROUP_SIZE_LabelTitle_RESID: (null) */
 END
 
 STRINGTABLE 
 BEGIN
-    ID_CMD_MORE_LabelTitle_RESID L"" /* LabelTitle ID_CMD_MORE_LabelTitle_RESID: (null) */
+    ID_CMD_GROUP_STYLE_LabelTitle_RESID L"" /* LabelTitle ID_CMD_GROUP_STYLE_LabelTitle_RESID: (null) */
 END
 
 STRINGTABLE 

@@ -13,6 +13,8 @@ public:
 	void Draw(HDC hdc);
 	void Draw(HDC hdc, POINT pS, POINT pE);
 	void SaveObject(std::fstream& out);
+	void ReadObject(std::fstream &in);
+	void clearObject();
 	void setPointStart(POINT pS);
 	void setPointEnd(POINT pE);
 	CShape* Clone() const;

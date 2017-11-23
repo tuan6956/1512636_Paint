@@ -50,6 +50,10 @@ public:
 		IUISimplePropertySet* pCommandExecutionProperties);
 
 private:
+	HRESULT CreateUIImageFromBitmapResource(LPCTSTR pszResource, __out IUIImage **ppimg);
+	IUIImageFromBitmap* m_pifbFactory;
+	static int LineRibbonImageIds[7];
+	static int StyleRibbonImageIds[5];
 	CCommandHandler() : m_cRef(1) {}
 	LONG m_cRef;                        // Reference count.
 };
